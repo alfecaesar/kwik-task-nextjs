@@ -96,7 +96,7 @@ export default function SignIn() {
                 errorText="Password is invalid"
               />
               <div className="text-center text-sm text-muted-foreground flex items-center justify-center gap-1">
-                <span>Don't have an account?</span>
+                <span>Don&apos;t have an account?</span>
                 <Label className="text-primary">
                   <Link href={"/sign-up"}>Sign Up</Link>
                 </Label>

@@ -9,8 +9,7 @@ import Stats from "./Components/Stats/Stats";
 import { TasksArea } from "./Components/TasksArea/TasksArea";
 import { TasksFooter } from "./Components/TaskFooter/TaskFooter";
 import { TasksDialog } from "./Components/Dialogs/TaskDialog/TaskDialog";
-//
-//
+
 export default function Dashboard() {
   const router = useRouter(); // Next.js router for redirection
   const { user, validateUser } = useUserStore();
