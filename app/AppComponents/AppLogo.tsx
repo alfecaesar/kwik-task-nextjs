@@ -1,4 +1,3 @@
-import { GiQuickSlash } from "react-icons/gi";
 import { GiQuickMan } from "react-icons/gi";
 
 export default function AppLogo(){

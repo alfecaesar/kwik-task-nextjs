@@ -1,4 +1,4 @@
-import { text, boolean, pgTable, pgEnum, timestamp } from "drizzle-orm/pg-core";
+import { text, pgTable, pgEnum, timestamp } from "drizzle-orm/pg-core";
 
 export const priorityEnum = pgEnum("priority", ["low", "medium", "high"]);
 export const statusEnum = pgEnum("status", ["in progress", "completed"]);

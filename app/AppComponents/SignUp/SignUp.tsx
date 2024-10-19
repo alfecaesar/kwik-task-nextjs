@@ -18,7 +18,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpSchema } from "../ValidationSchema";
 import z from "zod";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { useUserStore } from "@/app/stores/useUserStore";

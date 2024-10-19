@@ -19,7 +19,8 @@ import { authSchema } from "../ValidationSchema";
 import z from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+
+import { useUserStore } from "@/app/stores/useUserStore";
 
 type AuthFormData = z.infer<typeof authSchema>;
 
@@ -27,47 +28,30 @@ export default function SignIn() {
   const methods = useForm<AuthFormData>({ resolver: zodResolver(authSchema) });
   const { toast } = useToast();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  const { loginFunction, isLoading } = useUserStore();
 
   const onSubmit = async (data: AuthFormData) => {
-    try {
-      setIsLoading(true);
-      const response = await fetch("/api/signin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password
-        }),
-      });
+    const IsLogged = await loginFunction(data);
 
-      const result = await response.json();
+    console.log(IsLogged);
 
-      if (response.ok) {
-        toast({ 
-          title: "Sign in successful!", 
-          description: "You have signed in" 
-        });
-        router.push("/to-dos");
-      } else {
-        toast({ 
-          title: "Sign in failed!", 
-          description: result.error || "An unknown error occured",
-          variant: "destructive"
-        });
-      }
-    } catch (error) {
-      console.error("Sign in error:", error);
-      toast({ 
-        title: "Sign in failed!", 
-        description: "An unexpected error occured. Please try again",
-        variant: "destructive"
+    if (IsLogged.isLoggedIn) {
+      toast({
+        title: "Sign in successful!",
+        description: "You have signed in.",
       });
-    } finally {
-      setIsLoading(false);
+      router.push("/to-dos");
+    } else {
+      toast({
+        title: "Sign in failed",
+        description: IsLogged.error,
+        variant: "destructive",
+      });
     }
-    
+
+    console.log(IsLogged);
   };
+
 
   const handleErrorToast = () => {
     const { errors } = methods.formState;
@@ -120,7 +104,7 @@ export default function SignIn() {
             </CardContent>
             <CardFooter>
               <Button type="submit" className="w-full">
-                Login
+                {isLoading ? "loading..." : "Login"}
               </Button>
             </CardFooter>
           </form>
