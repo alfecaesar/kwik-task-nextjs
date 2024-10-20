@@ -34,10 +34,10 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen border flex items-center w-full justify-center poppins  ">
+    <div className="min-h-screen border flex items-center w-full justify-center poppins p-3 md:p-5 ">
       <div
-        className="w-[55%]   border border-gray-400 flex flex-col gap-6 bg-inherit shadow-md 
-      rounded-md p-8"
+        className="w-full border border-gray-400 flex flex-col gap-6 bg-inherit shadow-md 
+      rounded-md p-3 md:p-8"
       >
         <TaskHeader />
         <Stats />

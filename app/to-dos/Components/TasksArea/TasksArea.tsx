@@ -73,7 +73,7 @@ export function SingleTask({ singleTask }: { singleTask: Task }) {
 
   return (
     <div
-      className={`border flex items-center p-3 rounded-md w-full justify-between mb-3 ${lowerOpacity}  `}
+      className={`border flex flex-col md:flex-row items-center p-3 rounded-md w-full justify-between mb-3 ${lowerOpacity} gap-3 md:gap-0 `}
     >
       <div className="flex items-center gap-2">
         {loading ? (
@@ -87,14 +87,14 @@ export function SingleTask({ singleTask }: { singleTask: Task }) {
           />
         )}
 
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-row md:flex-col gap-1">
           <label
             onClick={() => {
               setTaskSelected(singleTask);
               setIsTaskDialogOpened(true);
             }}
             htmlFor="task"
-            className={`text-lg font-semibold cursor-pointer hover:text-primary ${lineThrough} `}
+            className={`text-sm md:text-lg font-semibold cursor-pointer hover:text-primary ${lineThrough} `}
           >
             {singleTask.name}
           </label>

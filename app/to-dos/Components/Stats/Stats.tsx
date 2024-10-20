@@ -33,12 +33,12 @@ export default function Stats() {
   }, [tasks]);
 
   return (
-    <div className="flex gap-5 py-5">
+    <div className="gap-5 py-5 flex flex-col md:flex-row">
       {statsArray.map((stat, index) => (
-        <div key={index} className="flex w-full     gap-5  ">
+        <div key={index} className="flex w-full gap-5 border-2 md:border-0 py-5 md:py-0 rounded-md">
           <SingleStatCard stat={stat} key={index} />
           {index < statsArray.length - 1 && (
-            <Separator orientation="vertical" className="h-auto" />
+            <Separator orientation="vertical" className="h-auto hidden md:block" />
           )}
         </div>
       ))}
@@ -54,8 +54,8 @@ function SingleStatCard({ stat }: { stat: SingleStat }) {
       <div className="flex justify-between items-center">
         <p className="text-xl font-medium text-gray-500">{stat.label}</p>
       </div>
-      <div className="flex gap-1  items-baseline  ">
-        <p className="text-3xl font-bold mt-1 ">{stat.counter}</p>
+      <div className="flex gap-3  items-center  ">
+        <p className="text-3xl font-bold text-primary">{stat.counter}</p>
         <p className="text-gray-400">{stat.unit}</p>
       </div>
     </div>
